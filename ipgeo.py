@@ -24,4 +24,9 @@ except:
 
 # --- get the info ---
 response = requests.get('http://ip-api.com/json/%s' % ip).json()
+
+if response['status'] == 'fail':
+    print("Lookup of IP \"%s\" failed!\nFail message from API: %s" % (ip, response['message']))
+    sys.exit()
+
 print("IP:      %s\nCity:    %s\nRegion:  %s\nCountry: %s" % (ip, response['city'], response['region'], response['country']))
